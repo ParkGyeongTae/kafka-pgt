@@ -78,11 +78,6 @@ services:
       BOOTSTRAP_SERVERS: kafka-1:9092,kafka-2:9093,kafka-3:9094
       ZOOKEEPER: zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181
       KAFKA_CREATE_TOPICS: test1:1:1
-    # volumes:
-    #   - type: bind
-    #     source: ./data/kafka-cluster/kafka-1/data
-    #     target: /var/lib/kafka/data
-    #     read_only: false
     depends_on:
       - zookeeper-1
       - zookeeper-2
@@ -102,11 +97,6 @@ services:
       BOOTSTRAP_SERVERS: kafka-1:9092,kafka-2:9093,kafka-3:9094
       ZOOKEEPER: zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181
       KAFKA_CREATE_TOPICS: test2:1:1
-    # volumes:
-    #   - type: bind
-    #     source: ./data/kafka-cluster/kafka-2/data
-    #     target: /var/lib/kafka/data
-    #     read_only: false
     depends_on:
       - zookeeper-1
       - zookeeper-2
@@ -119,18 +109,13 @@ services:
     ports:
       - 9094:9094
     environment:
-      KAFKA_BROKER_ID: 2
+      KAFKA_BROKER_ID: 3
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-3:9094
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9094
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181
       BOOTSTRAP_SERVERS: kafka-1:9092,kafka-2:9093,kafka-3:9094
       ZOOKEEPER: zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181
       KAFKA_CREATE_TOPICS: test3:1:1
-    # volumes:
-    #   - type: bind
-    #     source: ./data/kafka-cluster/kafka-3/data
-    #     target: /var/lib/kafka/data
-    #     read_only: false
     depends_on:
       - zookeeper-1
       - zookeeper-2
