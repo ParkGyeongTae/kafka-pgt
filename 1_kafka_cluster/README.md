@@ -7,4 +7,10 @@
 - kafka-topics --list --bootstrap-server kafka-3:9094
 
 ## 토픽 만들기
-- kafka-topics --create --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --replication-factor 1 --partitions 1 --topic mytopic
+- kafka-topics --create --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --replication-factor 1 --partitions 1 --topic mytopic-1-1
+- kafka-topics --create --bootstrap-server kafka-1:9092 --replication-factor 1 --partitions 1 --topic topic-kafka-1
+- kafka-topics --create --bootstrap-server kafka-2:9093 --replication-factor 1 --partitions 1 --topic topic-kafka-2
+- kafka-topics --create --bootstrap-server kafka-3:9094 --replication-factor 1 --partitions 1 --topic topic-kafka-3
+
+## 토픽 지우기
+- kafka-topics --delete --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-1-1

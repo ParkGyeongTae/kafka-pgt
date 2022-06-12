@@ -76,7 +76,6 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181
       BOOTSTRAP_SERVERS: kafka-1:9092,kafka-2:9093,kafka-3:9094
-      ZOOKEEPER: zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181
     depends_on:
       - zookeeper-1
       - zookeeper-2
@@ -94,7 +93,6 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9093
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181
       BOOTSTRAP_SERVERS: kafka-1:9092,kafka-2:9093,kafka-3:9094
-      ZOOKEEPER: zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181
     depends_on:
       - zookeeper-1
       - zookeeper-2
@@ -112,7 +110,6 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9094
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181
       BOOTSTRAP_SERVERS: kafka-1:9092,kafka-2:9093,kafka-3:9094
-      ZOOKEEPER: zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181
     depends_on:
       - zookeeper-1
       - zookeeper-2
