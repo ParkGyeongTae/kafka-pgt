@@ -114,3 +114,20 @@ services:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
+
+  kafdrop:
+    hostname: kafdrop
+    container_name: kafdrop
+    image: obsidiandynamics/kafdrop:3.30.0
+    ports:
+      - 9001:9000
+    environment:
+      KAFKA_BROKERCONNECT: "kafka-1:9092,kafka-2:9093,kafka-3:9094"
+      JVM_OPTS: "-Xms32M -Xmx64M"
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+      - kafka-1
+      - kafka-2
+      - kafka-3
