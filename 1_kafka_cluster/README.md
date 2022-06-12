@@ -1,5 +1,6 @@
 # kafka-pgt
 
+# 토픽
 ## 토픽 조회
 - kafka-topics --list --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094
 
@@ -9,7 +10,23 @@
 - kafka-topics --create --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --replication-factor 3 --partitions 3 --topic mytopic-3-3
 
 ## 토픽 지우기
-- kafka-topics --delete --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic,topic-kafka-1,topic-kafka-2,topic-kafka-3
+- kafka-topics --delete --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-1-1,mytopic-2-2,mytopic-3-3
 
 ## 토픽 상세보기
-- kafka-topics --describe --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic
+- kafka-topics --describe --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-1-1
+- kafka-topics --describe --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-2-2
+- kafka-topics --describe --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-3-3
+
+
+
+# 메세지
+
+## 메세지 쓰기
+- kafka-console-producer --broker-list kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-1-1
+- kafka-console-producer --broker-list kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-2-2
+- kafka-console-producer --broker-list kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-3-3
+
+## 메세지 읽기
+- kafka-console-consumer --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-1-1 --from-beginning
+- kafka-console-consumer --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-2-2 --from-beginning
+- kafka-console-consumer --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-3-3 --from-beginning
