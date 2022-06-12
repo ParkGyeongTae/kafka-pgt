@@ -24,9 +24,20 @@
 ## 메세지 쓰기
 - kafka-console-producer --broker-list kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-1-1
 - kafka-console-producer --broker-list kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-2-2
-- kafka-console-producer --broker-list kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-3-3
+- kafka-console-producer --broker-list kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-3-3 --property "parse.key=true" --property "key.separator=:"
+
 
 ## 메세지 읽기
 - kafka-console-consumer --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-1-1 --from-beginning
 - kafka-console-consumer --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-2-2 --from-beginning
-- kafka-console-consumer --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-3-3 --from-beginning
+- kafka-console-consumer --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-3-3 --from-beginning --property print.key=true --property key.separator="-"
+
+
+# 컨슈머 그룹
+
+## 컨슈머 그룹 리스트
+- kafka-consumer-groups --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --list
+
+
+## 컨슈머 그룹 상세보기
+- kafka-consumer-groups --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --group console-consumer-66325 --describe
