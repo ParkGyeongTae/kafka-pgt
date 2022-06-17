@@ -49,5 +49,5 @@
 
 # 토픽 성능 테스트
 - kafka-topics --create --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --replication-factor 3 --partitions 3 --topic performance-test
-- kafka-producer-perf-test --topic performance-test --throughput -1 --num-records 10000000 --record-size 2000 --producer-props ack=1 bootstrap.servers=kafka-1:9092,kafka-2:9093,kafka-3:9094
-- kafka-consumer-perf-test --topic performance-testaa --broker-list kafka-1:9092,kafka-2:9093,kafka-3:9094 --messages 1000 --timeout 100000
+- kafka-producer-perf-test --topic performance-test --throughput -1 --num-records 100000 --record-size 2000 --producer-props ack=1 bootstrap.servers=kafka-1:9092,kafka-2:9093,kafka-3:9094
+- kafka-consumer-perf-test --topic performance-test --broker-list kafka-1:9092,kafka-2:9093,kafka-3:9094 --messages 100000
