@@ -45,3 +45,9 @@
 
 ## 컨슈머 그룹 상세보기
 - kafka-consumer-groups --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --group console-consumer-66325 --describe
+
+
+# 토픽 성능 테스트
+- kafka-topics --create --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --replication-factor 3 --partitions 3 --topic performance-test
+- kafka-producer-perf-test --topic performance-test --throughput -1 --num-records 10000 --record-size 2000 --producer-props ack=1 kafka-1:9092,kafka-2:9093,kafka-3:9094
+- kafka-consumer-perf-test --topic performance-test --broker-list kafka-1:9092,kafka-2:9093,kafka-3:9094 --messages 10000
