@@ -12,10 +12,13 @@ volumes:
   zookeeper-3-logs:
   kafka-1-data:
   kafka-1-secrets:
+  kafka-1-log:
   kafka-2-data:
   kafka-2-secrets:
+  kafka-2-log:
   kafka-3-data:
   kafka-3-secrets:
+  kafka-3-log:
 
 services:
 
@@ -29,6 +32,10 @@ services:
     environment:
       ZOO_MY_ID: 1
       ZOO_SERVERS: server.1=zookeeper-1:2888:3888;2181 server.2=zookeeper-2:2888:3888;2181 server.3=zookeeper-3:2888:3888;2181
+      ZOO_TICK_TIME: 2000
+      ZOO_INIT_LIMIT: 5
+      ZOO_SYNC_LIMIT: 2
+      ZOO_MAX_CLIENT_CNXNS: 60
     volumes:
       - zookeeper-1-data:/data
       - zookeeper-1-datalog:/datalog
@@ -44,6 +51,10 @@ services:
     environment:
       ZOO_MY_ID: 2
       ZOO_SERVERS: server.1=zookeeper-1:2888:3888;2181 server.2=zookeeper-2:2888:3888;2181 server.3=zookeeper-3:2888:3888;2181
+      ZOO_TICK_TIME: 2000
+      ZOO_INIT_LIMIT: 5
+      ZOO_SYNC_LIMIT: 2
+      ZOO_MAX_CLIENT_CNXNS: 60
     volumes:
       - zookeeper-2-data:/data
       - zookeeper-2-datalog:/datalog
@@ -59,6 +70,10 @@ services:
     environment:
       ZOO_MY_ID: 3
       ZOO_SERVERS: server.1=zookeeper-1:2888:3888;2181 server.2=zookeeper-2:2888:3888;2181 server.3=zookeeper-3:2888:3888;2181
+      ZOO_TICK_TIME: 2000
+      ZOO_INIT_LIMIT: 5
+      ZOO_SYNC_LIMIT: 2
+      ZOO_MAX_CLIENT_CNXNS: 60
     volumes:
       - zookeeper-3-data:/data
       - zookeeper-3-datalog:/datalog
@@ -93,6 +108,7 @@ services:
     volumes:
       - kafka-1-data:/var/lib/kafka/data
       - kafka-1-secrets:/etc/kafka/secrets
+      - kafka-1-log:/var/log/kafka
     depends_on:
       - zookeeper-1
       - zookeeper-2
@@ -113,6 +129,7 @@ services:
     volumes:
       - kafka-2-data:/var/lib/kafka/data
       - kafka-2-secrets:/etc/kafka/secrets
+      - kafka-2-log:/var/log/kafka
     depends_on:
       - zookeeper-1
       - zookeeper-2
@@ -133,6 +150,7 @@ services:
     volumes:
       - kafka-3-data:/var/lib/kafka/data
       - kafka-3-secrets:/etc/kafka/secrets
+      - kafka-3-log:/var/log/kafka
     depends_on:
       - zookeeper-1
       - zookeeper-2
