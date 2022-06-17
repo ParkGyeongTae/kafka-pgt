@@ -12,13 +12,13 @@ volumes:
   zookeeper-3-logs:
   kafka-1-data:
   kafka-1-secrets:
-  kafka-1-log:
   kafka-2-data:
   kafka-2-secrets:
-  kafka-2-log:
   kafka-3-data:
   kafka-3-secrets:
-  kafka-3-log:
+  # kafka-1-log:
+  # kafka-2-log:
+  # kafka-3-log:
 
 services:
 
