@@ -32,6 +32,9 @@
 - kafka-console-consumer --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-1-1 --from-beginning
 - kafka-console-consumer --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-2-2 --from-beginning
 - kafka-console-consumer --bootstrap-server kafka-1:9092,kafka-2:9093,kafka-3:9094 --topic mytopic-3-3 --from-beginning --property print.key=true --property key.separator="-"
+- kafka-console-consumer --bootstrap-server kafka-1:9092 --topic mytopic-3-3 --from-beginning
+- kafka-console-consumer --bootstrap-server kafka-2:9093 --topic mytopic-3-3 --from-beginning
+- kafka-console-consumer --bootstrap-server kafka-3:9094 --topic mytopic-3-3 --from-beginning
 
 
 # 컨슈머 그룹
