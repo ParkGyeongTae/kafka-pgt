@@ -1,5 +1,22 @@
 version: '2.1'
 
+volumes:
+  zookeeper-1-data:
+  zookeeper-1-datalog:
+  zookeeper-1-logs:
+  zookeeper-2-data:
+  zookeeper-2-datalog:
+  zookeeper-2-logs:
+  zookeeper-3-data:
+  zookeeper-3-datalog:
+  zookeeper-3-logs:
+  kafka-1-data:
+  kafka-1-secrets:
+  kafka-2-data:
+  kafka-2-secrets:
+  kafka-3-data:
+  kafka-3-secrets:
+
 services:
 
   zookeeper-1:
@@ -13,10 +30,9 @@ services:
       ZOO_MY_ID: 1
       ZOO_SERVERS: server.1=zookeeper-1:2888:3888;2181 server.2=zookeeper-2:2888:3888;2181 server.3=zookeeper-3:2888:3888;2181
     volumes:
-      - type: bind
-        source: ./data/zk-cluster/zookeeper-1/data
-        target: /data
-        read_only: false
+      - zookeeper-1-data:/data
+      - zookeeper-1-datalog:/datalog
+      - zookeeper-1-logs:/logs
 
   zookeeper-2:
     hostname: zookeeper-2
@@ -29,10 +45,9 @@ services:
       ZOO_MY_ID: 2
       ZOO_SERVERS: server.1=zookeeper-1:2888:3888;2181 server.2=zookeeper-2:2888:3888;2181 server.3=zookeeper-3:2888:3888;2181
     volumes:
-      - type: bind
-        source: ./data/zk-cluster/zookeeper-2/data
-        target: /data
-        read_only: false
+      - zookeeper-2-data:/data
+      - zookeeper-2-datalog:/datalog
+      - zookeeper-2-logs:/logs
 
   zookeeper-3:
     hostname: zookeeper-3
@@ -45,10 +60,9 @@ services:
       ZOO_MY_ID: 3
       ZOO_SERVERS: server.1=zookeeper-1:2888:3888;2181 server.2=zookeeper-2:2888:3888;2181 server.3=zookeeper-3:2888:3888;2181
     volumes:
-      - type: bind
-        source: ./data/zk-cluster/zookeeper-3/data
-        target: /data
-        read_only: false
+      - zookeeper-3-data:/data
+      - zookeeper-3-datalog:/datalog
+      - zookeeper-3-logs:/logs
 
   zookeeper-navigator:
     hostname: zookeeper-navigator
@@ -76,6 +90,9 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181
       BOOTSTRAP_SERVERS: kafka-1:9092,kafka-2:9093,kafka-3:9094
+    volumes:
+      - kafka-1-data:/var/lib/kafka/data
+      - kafka-1-secrets:/etc/kafka/secrets
     depends_on:
       - zookeeper-1
       - zookeeper-2
@@ -93,6 +110,9 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9093
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181
       BOOTSTRAP_SERVERS: kafka-1:9092,kafka-2:9093,kafka-3:9094
+    volumes:
+      - kafka-2-data:/var/lib/kafka/data
+      - kafka-2-secrets:/etc/kafka/secrets
     depends_on:
       - zookeeper-1
       - zookeeper-2
@@ -110,6 +130,9 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9094
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181
       BOOTSTRAP_SERVERS: kafka-1:9092,kafka-2:9093,kafka-3:9094
+    volumes:
+      - kafka-3-data:/var/lib/kafka/data
+      - kafka-3-secrets:/etc/kafka/secrets
     depends_on:
       - zookeeper-1
       - zookeeper-2
