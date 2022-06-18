@@ -172,3 +172,20 @@ services:
       - kafka-1
       - kafka-2
       - kafka-3
+
+  python-client:
+    hostname: python-client
+    container_name: python-client
+    build:
+      context: .
+      dockerfile: ./python/Dockerfile
+    tty: true
+    stdin_open: true
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - zookeeper-3
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    
